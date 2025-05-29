@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="section" id="nature">
+      <h2>Nature</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </p>
+    </section>
+    <div id="container" >
+      <section class="section" id="scenery">
+        <h2>Scenery</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
+        </p>
+      </section>
+      <section class="section" id="landscape">
+        <h2>Landscape</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
+        </p>
+      </section>
+      <section class="section" id="mountain">
+        <h2>Mountains</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
+        </p>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>End</span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+        gsap.defaults({easy: "power1.out", duration: 2});
+        let splitEnd = SplitText.create('span', {type: 'chars'});
+        gsap.from(splitEnd.chars, {
+          autoAlpha: 0,
+          y: 100,
+          stagger: {
+           amount:  0.05,
+           from: 'random',
+           repeat: -1,
+           yoyo: true
+          },
+          duration: 0.5
+        });
+
+        const timelineHero = gsap.timeline().from("#nature h2", {
+          x: -300,
+          opacity: 0,
+          duration: 0.5
+        })
+        .from("#nature p", {
+          x: -300,
+          opacity: 0,
+        });
+
+        const timeline = gsap.timeline();
+        timeline.from('#scenery', {
+            xPercent: -100
+        })
+        .from('#scenery h2', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        })
+        .from('#scenery p', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        })
+        .from('#landscape', {
+            xPercent: 100
+        })
+        .from('#landscape h2', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        })
+        .from('#landscape p', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        })
+        .from('#mountain', {
+            xPercent: -100
+        })
+        .from('#mountain h2', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        })
+        .from('#mountain p', {
+            yPercent: 50,
+            opacity: 0,
+            ease: "power1.in"
+        });
+
+        ScrollTrigger.create({
+            animation: timeline,
+            trigger: '#container',
+            start: "top top",
+            end: "+=3000",
+            scrub: 0.5,
+            pin: true,
+            antecipatePin: 1
+        })
+      });
+    </script>
+  </body>
+</html>
